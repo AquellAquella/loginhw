@@ -15,9 +15,9 @@ class SuperPowersController extends Controller
     public function index()
     {
         $superpowers = superpowers::where('user_id',Auth::id())
-        ->where('active', 1)
-        ->select('id','name','description')
-        ->get();
+            ->where('active', 1)
+            ->select('id','name','description')
+            ->get();
         //Corroborar el que funcione el comando y regresa un array abierto a la vista
         //dd($superpowers);
         return view('superpowers.index', compact('superpowers'));
@@ -28,7 +28,7 @@ class SuperPowersController extends Controller
      */
     public function create()
     {
-        //
+        return view('superpowers.create');
     }
 
     /**
@@ -36,7 +36,15 @@ class SuperPowersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        superpowers::create([
+            'user_id' => Auth::id(),
+            'name' => $request->name,
+            'description' => $request->description,
+            'active' => 1,
+        ]);
+
+        return redirect()->route('superpowers.index');
     }
 
     /**
@@ -44,7 +52,15 @@ class SuperPowersController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //evitar regresar un array, primer resultado
+        $superpowers = superpowers::where('user_id',Auth::id())
+            ->where('id',$id)
+            ->where('active', 1)
+            ->select('id','name','description')
+            ->firstOrFail();
+
+        //dd($superpowers); 
+        return view('superpowers.show', compact('superpowers'));   
     }
 
     /**
@@ -52,7 +68,13 @@ class SuperPowersController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $superpower = superpowers::where('user_id',Auth::id())
+            ->where('id',$id)
+            ->where('active', 1)
+            ->select('id','name','description')
+            ->firstOrFail();
+
+        return view('superpowers.edit', compact('superpower')); 
     }
 
     /**
@@ -60,7 +82,19 @@ class SuperPowersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //dd($request);
+        $superpower = superpowers::where('user_id',Auth::id())
+            ->where('id',$id)
+            ->where('active', 1)
+            ->select('id','name','description')
+            ->firstOrFail();
+
+        $superpower->update([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);    
+
+        return redirect()->route('superpowers.show', $id);
     }
 
     /**
@@ -68,6 +102,16 @@ class SuperPowersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $superpower = superpowers::where('user_id',Auth::id())
+            ->where('id',$id)
+            ->where('active', 1)
+            ->select('id','name','description')
+            ->firstOrFail();
+
+        $superpower->update([
+            'active' => 0
+        ]);
+
+        return redirect()->route('superpowers.index');
     }
 }

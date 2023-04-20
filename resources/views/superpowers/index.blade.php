@@ -7,6 +7,7 @@
     <title>Superpowers</title>
 </head>
 <body>
+    <br><a href="{{ route('superpowers.create') }}">Create Superpower</a>
     <h1>SUPERPOWERS</h1>
 
     <table>
@@ -22,7 +23,9 @@
             @forelse($superpowers as $superpower)
                 <tr>
                     <td>{{$superpower->id}}</td>
-                    <td>{{$superpower->name}}</td>
+                    <td>
+                        <a href="{{ route('superpowers.show', $superpower->id) }}">{{$superpower->name}}</a>
+                    </td>
                     <td>{{$superpower->description}}</td>
                 </tr>
             @empty
