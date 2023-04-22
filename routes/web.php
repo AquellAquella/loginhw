@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SuperPowersController;
 
+//import controller parents
+use App\Http\Controllers\ParentsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,5 +34,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource("superpowers", SuperPowersController::class)->middleware('auth');
+
+Route::resource("parents", ParentsController::class)->middleware('auth');
 
 require __DIR__.'/auth.php';
