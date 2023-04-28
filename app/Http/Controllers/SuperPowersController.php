@@ -20,7 +20,9 @@ class SuperPowersController extends Controller
             ->get();
         //Corroborar el que funcione el comando y regresa un array abierto a la vista
         //dd($superpowers);
-        return view('superpowers.index', compact('superpowers'));
+
+        $page_title = "Superpowers";
+        return view('superpowers.index', compact('superpowers','page_title'));
     }
 
     /**
@@ -28,7 +30,8 @@ class SuperPowersController extends Controller
      */
     public function create()
     {
-        return view('superpowers.create');
+        $page_title = "Create Superpower";
+        return view('superpowers.create', compact('page_title'));
     }
 
     /**
@@ -60,7 +63,9 @@ class SuperPowersController extends Controller
             ->firstOrFail();
 
         //dd($superpowers); 
-        return view('superpowers.show', compact('superpowers'));   
+
+        $page_title="Show Superpower";
+        return view('superpowers.show', compact('superpowers', 'page_title'));   
     }
 
     /**
@@ -74,7 +79,8 @@ class SuperPowersController extends Controller
             ->select('id','name','description')
             ->firstOrFail();
 
-        return view('superpowers.edit', compact('superpower')); 
+        $page_title="Edit Superpower";
+        return view('superpowers.edit', compact('superpower', 'page_title')); 
     }
 
     /**

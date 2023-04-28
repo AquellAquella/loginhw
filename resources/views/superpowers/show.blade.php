@@ -1,25 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Superpower's Name</title>
-</head>
-<body>
+@extends('layouts.master')
 
-    <h1>{{ $superpowers->name }}</h1>
-    <p>{{ $superpowers->description }}</p>
+@section('content')
 
-    <a href="{{ route('superpowers.edit', $superpowers->id) }}">Edit  superpower</a>
-    
-    <form action="{{ route('superpowers.destroy', $superpowers->id) }}" method="post">
-        @method('delete')
-        @csrf
+    <br><br>
+    <div class="container">
+        <div class="row text-center">
+            <h2>{{ $superpowers->name }}</h2>
+            <p>{{ $superpowers->description }}</p>
+        </div>
+    </div>
+    <br><br>
 
-        <!---- <input type="hidden" name=""> ---->
-        <br><button type="submit" onclick="return confirm('Are you sure you want to delete this record?')">Delete superpower</button>
-    </form>
-    
-</body>
-</html>
+@endsection
+
+@section('buttons')
+<div class="container">
+    <div class="row text-center">
+        <div class="col-6 text-end">
+            <a href="{{ route('superpowers.edit', $superpowers->id) }}" class="btn btn-warning btn-lg btn-block">Edit  superpower</a>
+        </div>
+        <div class="col-6 text-start">
+            <form action="{{ route('superpowers.destroy', $superpowers->id) }}" method="post">
+                @method('delete')
+                @csrf
+
+                <!---- <input type="hidden" name=""> ---->
+                <button class="btn btn-danger btn-lg btn-block" type="submit" onclick="return confirm('Are you sure you want to delete this record?')">Delete superpower</button>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
