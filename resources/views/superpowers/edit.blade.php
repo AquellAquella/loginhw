@@ -12,12 +12,12 @@
                     
                     <div class="mb-3">
                         <label for="name" class="form-label">Name *</label>
-                        <input type="text" name="name" class="form-control" value="{{ $superpower->name }}">
+                        <input type="text" name="name" class="form-control form-control-lg" value="{{ $superpower->name }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label><br>
-                        <textarea name="description" class="form-control" cols="50" rows="5">{{ $superpower->description }}</textarea>
+                        <textarea name="description" class="form-control form-control-lg" cols="50" rows="5">{{ $superpower->description }}</textarea>
                     </div>
                     
                     <br><br>

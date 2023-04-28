@@ -39,3 +39,8 @@
 
     </body>
 </html>
+
+<!-- Additional notes
+    The framework to correctly display the header of the logout section in every screen was taken from
+    the layout files, especifically the app.blade.php file
+-->

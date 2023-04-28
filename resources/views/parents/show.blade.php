@@ -1,24 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parent's Info</title>
-</head>
-<body>
+@extends('layouts.master')
 
-    <h1>{{ $parents->name }}</h1>
-    <p>{{ $parents->gender }}</p>
+@section('content')
 
-    <a href="{{ route('parents.edit', $parents->id) }}">Edit Parent</a>
-    
-    <form action="{{ route('parents.destroy', $parents->id) }}" method="post">
-        @method('delete')
-        @csrf
+    <br><br>
+    <div class="container">
+        <div class="row text-center">
+            <h2>{{ $parents->name }}</h2>
+            <p>{{ $parents->gender }}</p>
+        </div>
+    </div>
+    <br><br>
 
-        <br><button type="submit" onclick="return confirm ('Are you sure you want to delete this record?')">Delete Parent</button>
-    </form>
+@endsection
 
-</body>
-</html>
+@section('buttons')
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-6 text-end">
+                <a href="{{ route('parents.edit', $parents->id) }}" class="btn btn-warning btn-lg btn-block">Edit Parent</a>
+            </div>
+            <div class="col-6 text-start">
+                <form action="{{ route('parents.destroy', $parents->id) }}" method="post">
+                    @method('delete')
+                    @csrf
+
+                    <button class="btn btn-danger btn-lg btn-block" type="submit" onclick="return confirm ('Are you sure you want to delete this record?')">Delete Parent</button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection

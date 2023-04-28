@@ -1,39 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Superheroe's Parents</title>
-</head>
-<body>
+@extends('layouts.master')
     
-    <br><h1>PARENTS</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Gender</th>
-            </tr>
-        </thead>
+@section('content')
 
-        <tbody>
-            @forelse($parents as $parent)
-                <tr>
-                    <td>{{ $parent->id }}</td>
-                    <td>
-                        <a href="{{  route('parents.show', $parent->id) }}">{{ $parent->name }}</a>
-                    </td>
-                    <td>{{ $parent->gender }}</td>
-                </tr>
-            @empty
-                <p>There's no parent registers under this user...</p>
-            @endforelse
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9 text-center">
+                <table class="table table-hover table-striped text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" style="width: 20%">ID</th>
+                            <th scope="col" style="width: 30%">Name</th>
+                            <th scope="col">Gender</th>
+                        </tr>
+                    </thead>
 
-    <br><a href=" {{ route('parents.create') }}">Create Parent</a>
-    
-</body>
-</html>
+                    <tbody>
+                        @forelse($parents as $parent)
+                            <tr>
+                                <td>{{ $parent->id }}</td>
+                                <td>
+                                    <a href="{{  route('parents.show', $parent->id) }}">{{ $parent->name }}</a>
+                                </td>
+                                <td>{{ $parent->gender }}</td>
+                            </tr>
+                        @empty
+                            <p>There's no parent registers under this user...</p>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+@endsection
+
+@section('button')
+    <div class="container">
+        <div class="row text-end">
+            <div class="col-12">
+                <br><a href=" {{ route('parents.create') }}" class="btn btn-primary btn-lg">Create Parent</a>
+            </div>
+        </div>
+    </div>
+@endsection
